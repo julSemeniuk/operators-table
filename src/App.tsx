@@ -1,8 +1,7 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import WelcomePage from './pages/WelcomePage';
-import OperatorsPage from './pages/OperatorsPage';
 import { UniTalkRoute } from './constants';
+import { WelcomePage, OperatorsPage } from 'pages';
 
 const App: React.FC = () => {
     return (

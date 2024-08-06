@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { Operator, OperatorAddon } from '../types';
+import { Operator, OperatorAddon } from 'types';
 
 interface OperatorState {
     operators: Operator[];

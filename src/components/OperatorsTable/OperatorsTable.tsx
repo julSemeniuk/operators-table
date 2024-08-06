@@ -9,8 +9,9 @@ import {
     Paper,
     Checkbox,
 } from '@mui/material';
-import { OperatorTableData } from '../../types';
-import { ErrorMessage, UserCard } from '../shared';
+import { ErrorMessage, UserCard } from 'components/shared';
+import { OperatorTableData } from 'types';
+
 interface Props {
     operatorsTableData: OperatorTableData[];
 }
@@ -44,7 +45,7 @@ const OperatorsTable: React.FC<Props> = ({ operatorsTableData }) => {
                                 <TableCell>
                                     {new Date(operator.createdAt).toLocaleDateString()}
                                 </TableCell>
-                                <TableCell>{operator.description}</TableCell>
+                                <TableCell>{operator.text}</TableCell>
                             </TableRow>
                         ))}
                     </TableBody>
