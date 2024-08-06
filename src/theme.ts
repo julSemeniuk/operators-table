@@ -1,8 +1,12 @@
-import { Theme, createTheme } from '@mui/material/styles';
+import { Palette, Theme, createTheme } from '@mui/material/styles';
 
 //todo: remove emotion and mui-icons
 
 declare module '@mui/material/styles' {
+    interface Theme {
+        palette: Palette;
+    }
+
     interface TypographyVariants {
         tableHeader: React.CSSProperties;
         inputValue: React.CSSProperties;

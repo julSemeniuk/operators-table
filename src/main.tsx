@@ -5,7 +5,7 @@ import { Provider } from 'react-redux';
 import store from './store';
 import { CssBaseline } from '@mui/material';
 import theme from './theme';
-import { ThemeProvider } from 'styled-components';
+import { ThemeProvider } from '@emotion/react';
 
 const rootElement = document.getElementById('root');
 
