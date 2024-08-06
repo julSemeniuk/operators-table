@@ -1,5 +1,5 @@
+import { Operators } from 'components';
 import React from 'react';
-import { Operators } from '../components';
 
 const OperatorsPage: React.FC = () => {
     return <Operators />;

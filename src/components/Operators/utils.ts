@@ -1,4 +1,4 @@
-import { Operator, OperatorAddon, OperatorTableData } from '../../types';
+import { Operator, OperatorAddon, OperatorTableData } from 'types';
 
 const getOperatorsTableData = (
     operators: Operator[],
@@ -11,7 +11,7 @@ const getOperatorsTableData = (
 
     return operators.map((operator) => ({
         ...operator,
-        description: operatorDescriptionBasedOnId[operator.id] || '',
+        text: operatorDescriptionBasedOnId[operator.id] || '',
     }));
 };
 

@@ -13,6 +13,4 @@ export interface OperatorAddon {
     id: string;
 }
 
-export interface OperatorTableData extends Operator {
-    description: string;
-}
+export type OperatorTableData = Operator & Pick<OperatorAddon, 'text'>;

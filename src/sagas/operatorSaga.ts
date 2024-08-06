@@ -1,15 +1,14 @@
 import { call, put, takeLatest } from 'redux-saga/effects';
+import { getOperators, getOperatorsAddons } from 'services';
 
 import {
-    getOperatorsRequest,
     getOperatorsSuccess,
     getOperatorsFailure,
-    getOperatorsAddonsRequest,
     getOperatorsAddonsSuccess,
     getOperatorsAddonsFailure,
-} from '../slices/operatorSlice';
-
-import { getOperatorsAddons, getOperators } from '../services';
+    getOperatorsRequest,
+    getOperatorsAddonsRequest,
+} from 'slices/operatorSlice';
 
 function* handleGetOperators() {
     try {
