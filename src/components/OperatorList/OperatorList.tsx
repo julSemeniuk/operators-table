@@ -24,7 +24,6 @@ const OperatorList: React.FC = () => {
         <>
             <TextField label="Search" placeholder="User name..." />
             <div>
-                <Typography variant="h1">Operators</Typography>
                 <ul>
                     {operators.map((operator) => (
                         <li key={operator.id}>
