@@ -1,14 +1,8 @@
 import React from 'react';
-import { Container, Typography } from '@mui/material';
-import OperatorList from '../components/OperatorList/OperatorList';
+import { Operators } from '../components';
 
 const OperatorsPage: React.FC = () => {
-    return (
-        <Container>
-            <Typography variant="h1">Operators</Typography>
-            <OperatorList />
-        </Container>
-    );
+    return <Operators />;
 };
 
 export default OperatorsPage;

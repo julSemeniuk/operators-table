@@ -11,12 +11,14 @@ declare module '@mui/material/styles' {
         tableHeader: React.CSSProperties;
         inputValue: React.CSSProperties;
         inputLabel: React.CSSProperties;
+        error: React.CSSProperties;
     }
 
     interface TypographyVariantsOptions {
         tableHeader?: React.CSSProperties;
         inputValue?: React.CSSProperties;
         inputLabel?: React.CSSProperties;
+        error?: React.CSSProperties;
     }
 }
 
@@ -25,6 +27,7 @@ declare module '@mui/material/Typography' {
         tableHeader: true;
         inputValue: true;
         inputLabel: true;
+        error: true;
     }
 }
 
@@ -69,6 +72,11 @@ const theme = createTheme({
         },
         caption: {
             fontSize: 12,
+            fontWeight: 400,
+            color: '#292424',
+        },
+        error: {
+            fontSize: 16,
             fontWeight: 400,
             color: '#292424',
         },
