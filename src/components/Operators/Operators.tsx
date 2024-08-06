@@ -11,6 +11,14 @@ import { ErrorMessage, Loader } from '../shared';
 import { OperatorsTable } from '..';
 import getOperatorsTableData from './utils';
 import SearchBox from '../shared/SeachBox/SearchBox';
+import { MIN_SEARCH_QUERY_LENGTH } from '../../constants';
+
+//todo: add fonts
+//todo: add abs path
+//todo: create custom hooks
+//todo: cover with integration and unit tests
+//todo: deep self code review
+//todo: add styles
 
 const Operators: React.FC = () => {
     const dispatch = useDispatch<AppDispatch>();
@@ -31,7 +39,7 @@ const Operators: React.FC = () => {
 
     const operatorsTableData = useMemo(() => {
         const operatorsTableData = getOperatorsTableData(operators, operatorAddons);
-        if (searchValue) {
+        if (searchValue.length >= MIN_SEARCH_QUERY_LENGTH) {
             return operatorsTableData.filter((operator) =>
                 operator.name.toLowerCase().includes(searchValue.toLowerCase())
             );
