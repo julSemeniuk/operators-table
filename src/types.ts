@@ -12,3 +12,7 @@ export interface OperatorAddon {
     isChecked: boolean;
     id: string;
 }
+
+export interface OperatorTableData extends Operator {
+    description: string;
+}
