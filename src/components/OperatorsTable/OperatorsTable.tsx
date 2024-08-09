@@ -21,11 +21,13 @@ const OperatorsTable: React.FC<Props> = ({ operatorsTableData }) => {
         <StyledDataGridContainer>
             {operatorsTableData.length ? (
                 <DataGrid
+                    aria-label="Operators table"
                     rows={operatorsTableData}
                     columns={columns}
                     paginationModel={paginationModel}
                     onPaginationModelChange={setPaginationModel}
                     pageSizeOptions={[5, 10, 20]}
+                    disableRowSelectionOnClick
                 />
             ) : (
                 <ErrorMessage error={'No operator found'} />
