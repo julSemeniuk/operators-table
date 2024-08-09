@@ -1,58 +1,36 @@
-import React from 'react';
-import {
-    Table,
-    TableBody,
-    TableCell,
-    TableContainer,
-    TableHead,
-    TableRow,
-    Paper,
-    Checkbox,
-} from '@mui/material';
-import { ErrorMessage, UserCard } from 'components/shared';
-import { OperatorTableData } from 'types';
+import React, { useMemo, useState } from 'react';
+import { DataGrid, GridPaginationModel } from '@mui/x-data-grid';
+import { ErrorMessage } from 'components/shared';
+import { OPERATORS_TABLE_COLUMNS_MAP } from './constants';
+import { OperatorTableData } from './types';
 
 interface Props {
     operatorsTableData: OperatorTableData[];
 }
 
 const OperatorsTable: React.FC<Props> = ({ operatorsTableData }) => {
+    const [paginationModel, setPaginationModel] = useState<GridPaginationModel>({
+        page: 0,
+        pageSize: 10,
+    });
+
+    const columns = useMemo(() => Object.values(OPERATORS_TABLE_COLUMNS_MAP), [operatorsTableData]);
+
     return (
-        <TableContainer component={Paper}>
-            {operatorsTableData.length === 0 ? (
-                <ErrorMessage error={'No operator found'} />
+        <div style={{ height: 400, width: '100%' }}>
+            {operatorsTableData.length ? (
+                <DataGrid
+                    rows={operatorsTableData}
+                    columns={columns}
+                    paginationModel={paginationModel}
+                    onPaginationModelChange={setPaginationModel}
+                    pageSizeOptions={[5, 10, 20]}
+                />
             ) : (
-                <Table>
-                    <TableHead>
-                        <TableRow>
-                            <TableCell>#</TableCell>
-                            <TableCell>Name</TableCell>
-                            <TableCell>Is Working</TableCell>
-                            <TableCell>Date</TableCell>
-                            <TableCell>Description</TableCell>
-                        </TableRow>
-                    </TableHead>
-                    <TableBody>
-                        {operatorsTableData.map((operator) => (
-                            <TableRow key={operator.id}>
-                                <TableCell>{operator.id}</TableCell>
-                                <TableCell>
-                                    <UserCard avatarUrl={operator.avatar} name={operator.name} />
-                                </TableCell>
-                                <TableCell>
-                                    <Checkbox checked={operator.isWorking} readOnly />
-                                </TableCell>
-                                <TableCell>
-                                    {new Date(operator.createdAt).toLocaleDateString()}
-                                </TableCell>
-                                <TableCell>{operator.text}</TableCell>
-                            </TableRow>
-                        ))}
-                    </TableBody>
-                </Table>
+                <ErrorMessage error={'No operator found'} />
             )}
-        </TableContainer>
+        </div>
     );
 };
 
-export default OperatorsTable;
+export default React.memo(OperatorsTable);

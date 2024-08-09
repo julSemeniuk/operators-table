@@ -5,13 +5,14 @@ import { UniTalkRoute } from 'constants';
 
 const WelcomePage: React.FC = () => {
     return (
-        <Container>
+        <Container role="main">
             <Typography variant="h1">Welcome to My App</Typography>
             <Button
                 variant="contained"
                 color="primary"
                 component={Link}
                 to={UniTalkRoute.Operators}
+                aria-label="Go to Operators Page"
             >
                 Go to Operators Page
             </Button>
