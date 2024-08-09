@@ -38,7 +38,7 @@ export const OPERATORS_TABLE_COLUMNS_MAP: OperatorsTableColumnsMap = {
             getDefaultOperatorTableHeaderName('isWorking'),
         width: 130,
         renderCell: (params: GridRenderCellParams<OperatorTableData>) => (
-            <Checkbox checked={params.value} readOnly />
+            <Checkbox readOnly checked={params.value} aria-label="operator checkbox" />
         ),
     },
     createdAt: {

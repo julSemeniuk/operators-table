@@ -1,13 +1,33 @@
-import { TextField } from '@mui/material';
 import React from 'react';
+import { StyledTextField } from './styles';
+import { InputAdornment, TextFieldProps, Typography } from '@mui/material';
 
-interface Props {
-    value: string;
+interface SearchBoxProps extends Omit<TextFieldProps, 'variant'> {
+    width?: number;
+    label?: string;
+    placeholder: string;
     onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
 }
-const SearchBox: React.FC<Props> = ({ value, onChange }) => {
+
+const SearchBox: React.FC<SearchBoxProps> = ({
+    width = 300,
+    label = 'Search',
+    placeholder,
+    value,
+    onChange,
+    ...rest
+}) => {
     return (
-        <TextField label="Search" placeholder="User name..." value={value} onChange={onChange} />
+        <StyledTextField
+            {...rest}
+            focused
+            width={width}
+            label={label}
+            placeholder={placeholder}
+            value={value}
+            onChange={onChange}
+            InputLabelProps={<Typography variant="inputLabel">{label}</Typography>}
+        />
     );
 };
 

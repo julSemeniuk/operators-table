@@ -6,4 +6,5 @@ export const StyledContainer = styled('div')({
     flexDirection: 'row',
     gap: theme.spacing(1),
     alignItems: 'center',
+    marginTop: theme.spacing(0.75),
 });

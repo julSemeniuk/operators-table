@@ -3,6 +3,7 @@ import { DataGrid, GridPaginationModel } from '@mui/x-data-grid';
 import { ErrorMessage } from 'components/shared';
 import { OPERATORS_TABLE_COLUMNS_MAP } from './constants';
 import { OperatorTableData } from './types';
+import { StyledDataGridContainer } from './styles';
 
 interface Props {
     operatorsTableData: OperatorTableData[];
@@ -17,7 +18,7 @@ const OperatorsTable: React.FC<Props> = ({ operatorsTableData }) => {
     const columns = useMemo(() => Object.values(OPERATORS_TABLE_COLUMNS_MAP), [operatorsTableData]);
 
     return (
-        <div style={{ height: 400, width: '100%' }}>
+        <StyledDataGridContainer>
             {operatorsTableData.length ? (
                 <DataGrid
                     rows={operatorsTableData}
@@ -29,7 +30,7 @@ const OperatorsTable: React.FC<Props> = ({ operatorsTableData }) => {
             ) : (
                 <ErrorMessage error={'No operator found'} />
             )}
-        </div>
+        </StyledDataGridContainer>
     );
 };
 

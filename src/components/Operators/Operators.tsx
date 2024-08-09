@@ -38,7 +38,11 @@ const Operators: React.FC = () => {
                 <ErrorMessage error={error} />
             ) : (
                 <>
-                    <SearchBox value={searchValue} onChange={handleSearchChange} />
+                    <SearchBox
+                        value={searchValue}
+                        onChange={handleSearchChange}
+                        placeholder={'User name... '}
+                    />
                     <OperatorsTable operatorsTableData={operatorsTableData} />
                 </>
             )}
