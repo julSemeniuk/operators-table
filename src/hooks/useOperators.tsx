@@ -13,6 +13,7 @@ const useOperators = () => {
         dispatch(getOperatorsRequest());
         dispatch(getOperatorsAddonsRequest());
     }, [dispatch]);
+
     return { operators, operatorAddons, loading, error };
 };
 

@@ -1,4 +1,5 @@
-import { Operator, OperatorAddon, OperatorTableData } from 'types';
+import { OperatorTableData } from 'components/OperatorsTable/types';
+import { Operator, OperatorAddon } from 'types';
 
 const getOperatorsTableData = (
     operators: Operator[],

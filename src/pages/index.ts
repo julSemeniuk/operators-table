@@ -1,4 +1,4 @@
 import OperatorsPage from './OperatorsPage';
-import WelcomePage from './WelcomePage';
+import HomePage from './HomePage';
 
-export { OperatorsPage, WelcomePage };
+export { OperatorsPage, HomePage };

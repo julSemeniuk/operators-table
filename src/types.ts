@@ -12,5 +12,3 @@ export interface OperatorAddon {
     isChecked: boolean;
     id: string;
 }
-
-export type OperatorTableData = Operator & Pick<OperatorAddon, 'text'>;
