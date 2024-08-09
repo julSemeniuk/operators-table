@@ -1,10 +1,7 @@
-//todo: add fonts
-//todo: a11y
 //todo: cover with integration and unit tests
 //todo: deep self code review
 //todo: add styles
 //todo: add react-query?
-//todo: optimization
 
 import { Typography } from '@mui/material';
 import { Loader, ErrorMessage, SearchBox } from 'components/shared';
@@ -42,6 +39,7 @@ const Operators: React.FC = () => {
                         value={searchValue}
                         onChange={handleSearchChange}
                         placeholder={'User name... '}
+                        aria-label="Search by user name"
                     />
                     <OperatorsTable operatorsTableData={operatorsTableData} />
                 </>
