@@ -2,10 +2,10 @@
 //todo: deep self code review
 //todo: add styles
 //todo: add react-query?
-
+import React from 'react';
 import { Typography } from '@mui/material';
 import { Loader, ErrorMessage, SearchBox } from 'components/shared';
-import { MIN_SEARCH_QUERY_LENGTH } from 'constants';
+import { MIN_SEARCH_QUERY_LENGTH } from 'const';
 import { useOperators, useSearch } from 'hooks';
 import { useMemo } from 'react';
 import { StyledContainer } from './styles';

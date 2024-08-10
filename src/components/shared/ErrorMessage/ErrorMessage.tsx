@@ -1,3 +1,4 @@
+import React from 'react';
 import { Typography } from '@mui/material';
 import theme from 'theme';
 import { StyledContainer } from '../styles';

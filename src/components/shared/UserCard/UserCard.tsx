@@ -1,3 +1,4 @@
+import React from 'react';
 import { Avatar, Typography } from '@mui/material';
 import { StyledContainer } from './styles';
 

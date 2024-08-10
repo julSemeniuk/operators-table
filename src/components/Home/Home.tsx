@@ -1,7 +1,7 @@
 import React from 'react';
 import { Button, Typography } from '@mui/material';
 import { Link } from 'react-router-dom';
-import { UniTalkRoute } from 'constants';
+import { UniTalkRoute } from 'const';
 import { StyledContainer } from './styles';
 
 const Home: React.FC = () => {
