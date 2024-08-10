@@ -1,6 +1,6 @@
 import { OperatorTableHeaderData } from './types';
 
-export const formatDefaultHeaderFieldName = (key: string): string => {
+const formatDefaultHeaderFieldName = (key: string): string => {
     const fieldName = key.replace(/([A-Z])/g, ' $1').toLowerCase();
     return fieldName.charAt(0).toUpperCase() + fieldName.slice(1);
 };

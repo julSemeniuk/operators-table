@@ -1,3 +1,4 @@
+import React from 'react';
 import { OperatorsTableHeaderNamesMap, OperatorsTableColumnsMap, OperatorTableData } from './types';
 import { GridRenderCellParams } from '@mui/x-data-grid';
 import { UserCard } from 'components/shared';

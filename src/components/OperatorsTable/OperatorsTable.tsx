@@ -1,7 +1,7 @@
 import React, { useMemo, useState } from 'react';
 import { DataGrid, GridPaginationModel } from '@mui/x-data-grid';
 import { ErrorMessage } from 'components/shared';
-import { OPERATORS_TABLE_COLUMNS_MAP } from './constants';
+import { OPERATORS_TABLE_COLUMNS_MAP } from './const';
 import { OperatorTableData } from './types';
 import { StyledDataGridContainer } from './styles';
 
