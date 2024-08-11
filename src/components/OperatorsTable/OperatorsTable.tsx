@@ -1,31 +1,24 @@
 import React, { useMemo, useState } from 'react';
-import { GridColDef, GridPaginationModel } from '@mui/x-data-grid';
+import { GridPaginationModel } from '@mui/x-data-grid';
 import { BlankStateMessage } from 'components/shared';
-import { OPERATORS_TABLE_COLUMNS_MAP } from './OperatorTableData';
-import { OperatorTableData } from './types';
 import { StyledDataGrid, StyledDataGridContainer } from './styles';
-import { Typography } from '@mui/material';
+import { OperatorsTableData } from './types';
+import { OperatorAddon } from 'types';
+import { generateColumns } from './utils';
 
 interface Props {
-    operatorsTableData: OperatorTableData[];
+    operatorsTableData: OperatorsTableData[];
+    operatorsAddons: OperatorAddon[];
 }
 
-const OperatorsTable: React.FC<Props> = ({ operatorsTableData }) => {
+const OperatorsTable: React.FC<Props> = ({ operatorsTableData, operatorsAddons }) => {
     const [paginationModel, setPaginationModel] = useState<GridPaginationModel>({
         page: 0,
         pageSize: 10,
     });
 
-    const columns = useMemo(
-        () =>
-            Object.values(OPERATORS_TABLE_COLUMNS_MAP).map((column: GridColDef) => ({
-                ...column,
-                renderHeader: () => (
-                    <Typography variant="tableHeader">{column.headerName}</Typography>
-                ),
-            })),
-        [operatorsTableData]
-    );
+    const columns = useMemo(() => generateColumns(operatorsAddons), [operatorsAddons]);
+
     return (
         <StyledDataGridContainer>
             {operatorsTableData.length ? (

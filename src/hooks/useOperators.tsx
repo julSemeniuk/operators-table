@@ -5,7 +5,7 @@ import { getOperatorsRequest, getOperatorsAddonsRequest } from 'slices/operatorS
 
 const useOperators = () => {
     const dispatch = useDispatch<AppDispatch>();
-    const { operators, operatorAddons, loading, error } = useSelector(
+    const { operators, operatorsAddons, loading, error } = useSelector(
         (state: RootState) => state.operator
     );
 
@@ -14,7 +14,7 @@ const useOperators = () => {
         dispatch(getOperatorsAddonsRequest());
     }, [dispatch]);
 
-    return { operators, operatorAddons, loading, error };
+    return { operators, operatorsAddons, loading, error };
 };
 
 export default useOperators;

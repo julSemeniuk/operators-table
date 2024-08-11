@@ -1,19 +1,21 @@
-import { OperatorTableData } from 'components/OperatorsTable/types';
+import { OperatorsTableData } from 'components/OperatorsTable/types';
 import { Operator, OperatorAddon } from 'types';
 
-const getOperatorsTableData = (
+export const getOperatorsTableData = (
     operators: Operator[],
-    operatorAddons: OperatorAddon[]
-): OperatorTableData[] => {
-    const operatorDescriptionBasedOnId: Record<string, string> = {};
-    operatorAddons.forEach((operatorAddon) => {
-        operatorDescriptionBasedOnId[operatorAddon.id] = operatorAddon.text;
+    operatorsAddons: OperatorAddon[]
+): OperatorsTableData[] => {
+    const operatorsAddonsMap: Record<string, Record<string, string>> = {};
+
+    operatorsAddons.forEach((operatorAddon) => {
+        if (!operatorsAddonsMap[operatorAddon.id]) {
+            operatorsAddonsMap[operatorAddon.id] = {};
+        }
+        operatorsAddonsMap[operatorAddon.id][operatorAddon.fieldName] = operatorAddon.text;
     });
 
     return operators.map((operator) => ({
         ...operator,
-        text: operatorDescriptionBasedOnId[operator.id] || '',
-    }));
+        ...operatorsAddonsMap[operator.id],
+    })) as unknown as OperatorsTableData[];
 };
-
-export default getOperatorsTableData;
