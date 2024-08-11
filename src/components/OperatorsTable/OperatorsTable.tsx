@@ -1,6 +1,6 @@
 import React, { useMemo, useState } from 'react';
 import { DataGrid, GridPaginationModel } from '@mui/x-data-grid';
-import { ErrorMessage } from 'components/shared';
+import { BlankStateMessage } from 'components/shared';
 import { OPERATORS_TABLE_COLUMNS_MAP } from './const';
 import { OperatorTableData } from './types';
 import { StyledDataGridContainer } from './styles';
@@ -28,9 +28,12 @@ const OperatorsTable: React.FC<Props> = ({ operatorsTableData }) => {
                     onPaginationModelChange={setPaginationModel}
                     pageSizeOptions={[5, 10, 20]}
                     disableRowSelectionOnClick
+                    disableColumnFilter
+                    disableColumnMenu
+                    disableColumnSorting
                 />
             ) : (
-                <ErrorMessage error={'No operator found'} />
+                <BlankStateMessage message={'No results found'} />
             )}
         </StyledDataGridContainer>
     );

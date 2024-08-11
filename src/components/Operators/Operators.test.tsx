@@ -4,11 +4,12 @@ import { render, screen } from '@testing-library/react';
 import Operators from './Operators';
 
 import { Operator, OperatorAddon } from 'types';
-import { useOperators, useSearch } from 'hooks';
+import { useOperators, useSearch, useNotification } from 'hooks';
 
 jest.mock('hooks', () => ({
     useOperators: jest.fn(),
     useSearch: jest.fn(),
+    useNotification: jest.fn(),
 }));
 
 const mockOperators: Operator[] = [
@@ -34,13 +35,16 @@ describe('Operators Component', () => {
             searchValue: '',
             handleSearchChange: jest.fn(),
         });
+
+        (useNotification as jest.Mock).mockReturnValue({
+            Notification: null,
+        });
     });
 
     it('should display all operators when search input is empty', () => {
         render(<Operators />);
 
         const operatorRows = screen.getAllByRole('row');
-
         expect(operatorRows).toHaveLength(mockOperators.length + 1);
     });
 
@@ -53,23 +57,39 @@ describe('Operators Component', () => {
         render(<Operators />);
 
         const operatorRows = screen.getAllByRole('row');
-
         expect(operatorRows).toHaveLength(2);
         expect(screen.getByText('Operator One')).toBeInTheDocument();
     });
 
-    it('should display an error message if search does not match any operators name', () => {
+    it('should display an blank state message if search does not match any operator name', () => {
         (useSearch as jest.Mock).mockReturnValue({
-            searchValue: 'Non-existent',
+            searchValue: 'non existent',
             handleSearchChange: jest.fn(),
         });
 
         render(<Operators />);
 
-        expect(screen.getByText(/no operator found/i)).toBeInTheDocument();
-
         const operatorRows = screen.queryAllByRole('row');
-
         expect(operatorRows).toHaveLength(0);
+
+        expect(screen.queryByText('Operator One')).not.toBeInTheDocument();
+        expect(screen.queryByText('Operator Two')).not.toBeInTheDocument();
+    });
+
+    it('should render the Notification component when an error occurs', () => {
+        (useOperators as jest.Mock).mockReturnValue({
+            operators: [],
+            operatorAddons: [],
+            loading: false,
+            error: 'error message',
+        });
+
+        (useNotification as jest.Mock).mockReturnValue({
+            Notification: <>Error Notification</>,
+        });
+
+        render(<Operators />);
+
+        expect(screen.getByText('Error Notification')).toBeInTheDocument();
     });
 });

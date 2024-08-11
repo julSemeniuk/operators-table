@@ -1,13 +1,8 @@
-//todo: cover with integration and unit tests
-//todo: deep self code review
-//todo: add styles
-//todo: add react-query?
-import React from 'react';
+import React, { useMemo } from 'react';
 import { Typography } from '@mui/material';
-import { Loader, ErrorMessage, SearchBox } from 'components/shared';
+import { Loader, SearchBox } from 'components/shared';
 import { MIN_SEARCH_QUERY_LENGTH } from 'const';
-import { useOperators, useSearch } from 'hooks';
-import { useMemo } from 'react';
+import { useNotification, useOperators, useSearch } from 'hooks';
 import { StyledContainer } from './styles';
 import getOperatorsTableData from './utils';
 import { OperatorsTable } from 'components';
@@ -15,6 +10,9 @@ import { OperatorsTable } from 'components';
 const Operators: React.FC = () => {
     const { operators, operatorAddons, loading, error } = useOperators();
     const { searchValue, handleSearchChange } = useSearch();
+    const { Notification } = useNotification({
+        message: error,
+    });
 
     const operatorsTableData = useMemo(() => {
         const operatorsTableData = getOperatorsTableData(operators, operatorAddons);
@@ -31,8 +29,6 @@ const Operators: React.FC = () => {
             <Typography variant="h1">Operators</Typography>
             {loading ? (
                 <Loader />
-            ) : error ? (
-                <ErrorMessage error={error} />
             ) : (
                 <>
                     <SearchBox
@@ -44,6 +40,7 @@ const Operators: React.FC = () => {
                     <OperatorsTable operatorsTableData={operatorsTableData} />
                 </>
             )}
+            {Notification}
         </StyledContainer>
     );
 };

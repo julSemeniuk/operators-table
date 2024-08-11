@@ -15,7 +15,7 @@ export const StyledTextField = styled(TextField, {
         },
     },
     '& .MuiOutlinedInput-root, & .MuiInputBase-root': {
-        fontSize: 16, //todo: create a const
+        fontSize: 16,
         fontWeight: theme.typography.fontWeightRegular,
         color: theme.palette.text,
         '& fieldset, &:hover fieldset, &.Mui-focused fieldset': {

@@ -1,6 +1,4 @@
-import { Palette, Theme, createTheme } from '@mui/material/styles';
-
-//todo: remove emotion and mui-icons
+import { Palette, createTheme } from '@mui/material/styles';
 
 declare module '@mui/material/styles' {
     interface Theme {
