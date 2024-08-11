@@ -1,9 +1,10 @@
 import React, { useMemo, useState } from 'react';
-import { DataGrid, GridPaginationModel } from '@mui/x-data-grid';
+import { GridColDef, GridPaginationModel } from '@mui/x-data-grid';
 import { BlankStateMessage } from 'components/shared';
-import { OPERATORS_TABLE_COLUMNS_MAP } from './const';
+import { OPERATORS_TABLE_COLUMNS_MAP } from './OperatorTableData';
 import { OperatorTableData } from './types';
-import { StyledDataGridContainer } from './styles';
+import { StyledDataGrid, StyledDataGridContainer } from './styles';
+import { Typography } from '@mui/material';
 
 interface Props {
     operatorsTableData: OperatorTableData[];
@@ -15,12 +16,20 @@ const OperatorsTable: React.FC<Props> = ({ operatorsTableData }) => {
         pageSize: 10,
     });
 
-    const columns = useMemo(() => Object.values(OPERATORS_TABLE_COLUMNS_MAP), [operatorsTableData]);
-
+    const columns = useMemo(
+        () =>
+            Object.values(OPERATORS_TABLE_COLUMNS_MAP).map((column: GridColDef) => ({
+                ...column,
+                renderHeader: () => (
+                    <Typography variant="tableHeader">{column.headerName}</Typography>
+                ),
+            })),
+        [operatorsTableData]
+    );
     return (
         <StyledDataGridContainer>
             {operatorsTableData.length ? (
-                <DataGrid
+                <StyledDataGrid
                     aria-label="Operators table"
                     rows={operatorsTableData}
                     columns={columns}
