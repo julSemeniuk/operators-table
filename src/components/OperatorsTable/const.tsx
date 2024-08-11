@@ -20,7 +20,7 @@ export const OPERATORS_TABLE_COLUMNS_MAP: OperatorsTableColumnsMap = {
         headerName:
             API_TO_UI_OPERATORS_TABLE_HEADER_NAME_MAP['id'] ??
             getDefaultOperatorTableHeaderName('id'),
-        width: 90,
+        width: 45,
     },
     name: {
         field: 'name',
