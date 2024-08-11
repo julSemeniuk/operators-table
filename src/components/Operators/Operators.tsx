@@ -4,25 +4,25 @@ import { Loader, SearchBox } from 'components/shared';
 import { MIN_SEARCH_QUERY_LENGTH } from 'const';
 import { useNotification, useOperators, useSearch } from 'hooks';
 import { StyledContainer } from './styles';
-import getOperatorsTableData from './utils';
 import { OperatorsTable } from 'components';
+import { getOperatorsTableData } from './utils';
 
 const Operators: React.FC = () => {
-    const { operators, operatorAddons, loading, error } = useOperators();
+    const { operators, operatorsAddons, loading, error } = useOperators();
     const { searchValue, handleSearchChange } = useSearch();
     const { Notification } = useNotification({
         message: error,
     });
 
     const operatorsTableData = useMemo(() => {
-        const operatorsTableData = getOperatorsTableData(operators, operatorAddons);
+        const operatorsTableData = getOperatorsTableData(operators, operatorsAddons);
         if (searchValue.length >= MIN_SEARCH_QUERY_LENGTH) {
             return operatorsTableData.filter((operator) =>
                 operator.name.toLowerCase().includes(searchValue.toLowerCase())
             );
         }
         return operatorsTableData;
-    }, [operators, operatorAddons, searchValue]);
+    }, [operators, operatorsAddons, searchValue]);
 
     return (
         <StyledContainer>
@@ -37,7 +37,10 @@ const Operators: React.FC = () => {
                         placeholder={'User name... '}
                         aria-label="Search by user name"
                     />
-                    <OperatorsTable operatorsTableData={operatorsTableData} />
+                    <OperatorsTable
+                        operatorsTableData={operatorsTableData}
+                        operatorsAddons={operatorsAddons}
+                    />
                 </>
             )}
             {Notification}

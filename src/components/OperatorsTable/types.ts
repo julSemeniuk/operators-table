@@ -1,25 +1,18 @@
-import { GridColDef as MUIGridColDef } from '@mui/x-data-grid';
+import { GridColDef, GridColDef as MUIGridColDef } from '@mui/x-data-grid';
 import { Operator, OperatorAddon } from 'types';
 
-export type OperatorTableData = Operator & Pick<OperatorAddon, 'text'>;
-
-export type OperatorTableHeaderData = Omit<OperatorTableData, 'avatar'>;
-
-export type GridColDef = Omit<MUIGridColDef, 'field'> & {
-    field: keyof OperatorTableData;
+type OperatorsTableDynamicFields = {
+    [K in OperatorAddon['fieldName']]: string;
 };
 
-type OperatorsTableHeaderUINameValues =
-    | '#'
-    | 'User'
-    | 'Is Working'
-    | 'Date / Time of creation'
-    | 'Description';
+type OperatorFieldNames = keyof Omit<Operator, 'avatar'>;
+
+type OperatorsTableHeaderUINameValues = '#' | 'User' | 'Is Working' | 'Date / Time of creation';
+
+export type OperatorsTableStaticFields = Omit<Operator, 'avatar'>;
+
+export type OperatorsTableData = OperatorsTableStaticFields & OperatorsTableDynamicFields;
 
 export type OperatorsTableHeaderNamesMap = {
-    [key in keyof OperatorTableHeaderData]: OperatorsTableHeaderUINameValues;
-};
-
-export type OperatorsTableColumnsMap = {
-    [key in keyof OperatorsTableHeaderNamesMap]: GridColDef;
+    [key in OperatorFieldNames]: OperatorsTableHeaderUINameValues;
 };

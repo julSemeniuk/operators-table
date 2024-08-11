@@ -3,14 +3,14 @@ import { Operator, OperatorAddon } from 'types';
 
 interface OperatorState {
     operators: Operator[];
-    operatorAddons: OperatorAddon[];
+    operatorsAddons: OperatorAddon[];
     loading: boolean;
     error: string | null;
 }
 
 const initialState: OperatorState = {
     operators: [],
-    operatorAddons: [],
+    operatorsAddons: [],
     loading: false,
     error: null,
 };
@@ -37,7 +37,7 @@ const operatorSlice = createSlice({
         },
         getOperatorsAddonsSuccess(state, action: PayloadAction<OperatorAddon[]>) {
             state.loading = false;
-            state.operatorAddons = action.payload;
+            state.operatorsAddons = action.payload;
         },
         getOperatorsAddonsFailure(state, action: PayloadAction<string>) {
             state.loading = false;

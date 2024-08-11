@@ -5,3 +5,8 @@ export const formatIsoDateTime = (isoDateString: string): string => {
         minute: '2-digit',
     })}`;
 };
+
+export const convertCamelToTitleCase = (key: string): string => {
+    const fieldName = key.replace(/([A-Z])/g, ' $1').toLowerCase();
+    return fieldName.charAt(0).toUpperCase() + fieldName.slice(1);
+};

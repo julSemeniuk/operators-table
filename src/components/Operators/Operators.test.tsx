@@ -17,16 +17,16 @@ const mockOperators: Operator[] = [
     { id: '2', name: 'Operator Two', createdAt: '2024-01-02', isWorking: true, avatar: '' },
 ];
 
-const mockOperatorAddons: OperatorAddon[] = [
-    { id: '1', fieldName: 'Addon One', text: 'Addon Text One', isChecked: true },
-    { id: '2', fieldName: 'Addon Two', text: 'Addon Text Two', isChecked: false },
+const mockOperatorsAddons: OperatorAddon[] = [
+    { id: '1', fieldName: 'Addon One Dynemic Field', text: 'Addon Text One', isChecked: true },
+    { id: '2', fieldName: 'Addon Two Dynemic Field', text: 'Addon Text Two', isChecked: false },
 ];
 
 describe('Operators Component', () => {
     beforeEach(() => {
         (useOperators as jest.Mock).mockReturnValue({
             operators: mockOperators,
-            operatorAddons: mockOperatorAddons,
+            operatorsAddons: mockOperatorsAddons,
             loading: false,
             error: null,
         });
@@ -41,11 +41,19 @@ describe('Operators Component', () => {
         });
     });
 
-    it('should display all operators when search input is empty', () => {
+    it('should display all operators and dynamic columns when search input is empty', () => {
         render(<Operators />);
 
         const operatorRows = screen.getAllByRole('row');
         expect(operatorRows).toHaveLength(mockOperators.length + 1);
+
+        expect(screen.getByText('Addon One Dynemic Field')).toBeInTheDocument();
+        expect(screen.getByText('Addon Two Dynemic Field')).toBeInTheDocument();
+
+        expect(screen.getByText('Operator One')).toBeInTheDocument();
+        expect(screen.getByText('Addon Text One')).toBeInTheDocument();
+        expect(screen.getByText('Operator Two')).toBeInTheDocument();
+        expect(screen.getByText('Addon Text Two')).toBeInTheDocument();
     });
 
     it('should filter operators based on search value', () => {
@@ -59,9 +67,10 @@ describe('Operators Component', () => {
         const operatorRows = screen.getAllByRole('row');
         expect(operatorRows).toHaveLength(2);
         expect(screen.getByText('Operator One')).toBeInTheDocument();
+        expect(screen.queryByText('Operator Two')).not.toBeInTheDocument();
     });
 
-    it('should display an blank state message if search does not match any operator name', () => {
+    it('should display a blank state message if search does not match any operator name', () => {
         (useSearch as jest.Mock).mockReturnValue({
             searchValue: 'non existent',
             handleSearchChange: jest.fn(),
@@ -74,12 +83,14 @@ describe('Operators Component', () => {
 
         expect(screen.queryByText('Operator One')).not.toBeInTheDocument();
         expect(screen.queryByText('Operator Two')).not.toBeInTheDocument();
+
+        expect(screen.getByText('No results found')).toBeInTheDocument();
     });
 
     it('should render the Notification component when an error occurs', () => {
         (useOperators as jest.Mock).mockReturnValue({
             operators: [],
-            operatorAddons: [],
+            operatorsAddons: [],
             loading: false,
             error: 'error message',
         });
