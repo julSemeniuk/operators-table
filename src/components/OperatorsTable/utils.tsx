@@ -12,11 +12,13 @@ const createStaticColumn = (
     field: keyof OperatorsTableStaticFields,
     headerName: string,
     renderCell: (params: GridRenderCellParams<OperatorsTableData>) => JSX.Element,
-    width: number
+    width: number,
+    type: 'number' | 'string' = 'string'
 ): GridColDef => ({
     field,
     headerName,
     width,
+    type,
     renderCell,
     renderHeader: () => <Typography variant="tableHeader">{headerName}</Typography>,
 });
@@ -36,7 +38,8 @@ const generateStaticColumns = (headerColumnsMap: Record<string, string>): GridCo
                     field,
                     headerName,
                     (params) => <Typography variant="body1">{params.value}</Typography>,
-                    70
+                    70,
+                    'number'
                 );
             case 'name':
                 return createStaticColumn(
