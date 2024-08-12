@@ -25,7 +25,7 @@ const getDefaultOperatorTableHeaderName = (field: keyof OperatorsTableStaticFiel
     return convertCamelToTitleCase(field);
 };
 
-export const generateStaticColumns = (headerColumnsMap: Record<string, string>): GridColDef[] => {
+const generateStaticColumns = (headerColumnsMap: Record<string, string>): GridColDef[] => {
     return Object.keys(headerColumnsMap).map((key) => {
         const field = key as keyof OperatorsTableStaticFields;
         const headerName = headerColumnsMap[key] ?? getDefaultOperatorTableHeaderName(field);
@@ -36,7 +36,7 @@ export const generateStaticColumns = (headerColumnsMap: Record<string, string>):
                     field,
                     headerName,
                     (params) => <Typography variant="body1">{params.value}</Typography>,
-                    40
+                    70
                 );
             case 'name':
                 return createStaticColumn(
@@ -78,7 +78,7 @@ export const generateStaticColumns = (headerColumnsMap: Record<string, string>):
     });
 };
 
-export const generateDynamicColumns = (operatorsAddons: OperatorAddon[]): GridColDef[] => {
+const generateDynamicColumns = (operatorsAddons: OperatorAddon[]): GridColDef[] => {
     const uniqueFields = new Set<string>();
 
     operatorsAddons.forEach((operatorAddon) => {

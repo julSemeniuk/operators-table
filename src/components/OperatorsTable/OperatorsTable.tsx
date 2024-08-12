@@ -32,7 +32,6 @@ const OperatorsTable: React.FC<Props> = ({ operatorsTableData, operatorsAddons }
                     disableRowSelectionOnClick
                     disableColumnFilter
                     disableColumnMenu
-                    disableColumnSorting
                 />
             ) : (
                 <BlankStateMessage message={'No results found'} />

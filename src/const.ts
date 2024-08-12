@@ -6,3 +6,5 @@ export enum UniTalkRoute {
 }
 
 export const MIN_SEARCH_QUERY_LENGTH = 3;
+
+export const NOTIFICATION_AUTO_HIDE_DURATION = 3000;

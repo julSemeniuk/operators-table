@@ -16,4 +16,4 @@ const UserCard: React.FC<Props> = ({ avatarUrl, name }) => {
     );
 };
 
-export default UserCard;
+export default React.memo(UserCard);
