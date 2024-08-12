@@ -14,4 +14,4 @@ const BlankStateMessage: React.FC<Props> = ({ message }) => {
     );
 };
 
-export default BlankStateMessage;
+export default React.memo(BlankStateMessage);

@@ -1,5 +1,6 @@
 import { useState, useEffect, useCallback } from 'react';
 import { Notification } from 'components/shared';
+import { NOTIFICATION_AUTO_HIDE_DURATION } from 'const';
 
 interface UseNotificationParams {
     message: string | null;
@@ -10,7 +11,7 @@ interface UseNotificationParams {
 const useNotification = ({
     message,
     severity = 'error',
-    autoHideDuration = 6000,
+    autoHideDuration = NOTIFICATION_AUTO_HIDE_DURATION,
 }: UseNotificationParams) => {
     const [isOpen, setIsOpen] = useState<boolean>(false);
 
@@ -26,7 +27,7 @@ const useNotification = ({
 
     const handleCloseSnackbar = useCallback(() => {
         setIsOpen(false);
-    }, []);
+    }, [isOpen]);
 
     return {
         Notification: (

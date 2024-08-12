@@ -1,6 +1,5 @@
 import React, { useMemo } from 'react';
-import { Typography } from '@mui/material';
-import { Loader, SearchBox } from 'components/shared';
+import { Header, Loader, SearchBox } from 'components/shared';
 import { MIN_SEARCH_QUERY_LENGTH } from 'const';
 import { useNotification, useOperators, useSearch } from 'hooks';
 import { StyledContainer } from './styles';
@@ -13,7 +12,6 @@ const Operators: React.FC = () => {
     const { Notification } = useNotification({
         message: error,
     });
-
     const operatorsTableData = useMemo(() => {
         const operatorsTableData = getOperatorsTableData(operators, operatorsAddons);
         if (searchValue.length >= MIN_SEARCH_QUERY_LENGTH) {
@@ -26,7 +24,7 @@ const Operators: React.FC = () => {
 
     return (
         <StyledContainer>
-            <Typography variant="h1">Operators</Typography>
+            <Header header={'Operators'} />
             {loading ? (
                 <Loader />
             ) : (

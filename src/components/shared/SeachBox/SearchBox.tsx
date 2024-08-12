@@ -29,4 +29,4 @@ const SearchBox: React.FC<SearchBoxProps> = ({
     );
 };
 
-export default SearchBox;
+export default React.memo(SearchBox);

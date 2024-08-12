@@ -1,13 +1,14 @@
 import React from 'react';
-import { Button, Typography } from '@mui/material';
+import { Button } from '@mui/material';
 import { Link } from 'react-router-dom';
 import { UniTalkRoute } from 'const';
 import { StyledContainer } from './styles';
+import { Header } from 'components/shared';
 
 const Home: React.FC = () => {
     return (
         <StyledContainer role="main">
-            <Typography variant="h1">Welcome to UniTalk Test Task</Typography>
+            <Header header={'Welcome to UniTalk Test Task'} />
             <Button
                 variant="contained"
                 color="primary"
