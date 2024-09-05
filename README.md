@@ -8,7 +8,6 @@
 
 1. **Clone the Repository**:
    git clone https://github.com/julSemeniuk/operators-table.git
-   cd uni-talk-test-task
 
 2. **Install Dependencies:**:
    npm install
